@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     site: "https://amplifycreativelab.github.io",
-    base: "/Night-Venue",
+    base: "/demo-night-venue",
     vite: {
         plugins: [tailwindcss()]
     }

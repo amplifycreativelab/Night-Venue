@@ -1,5 +1,7 @@
 ---
-
+const base = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
 ---
 
 <header
@@ -7,7 +9,7 @@
 >
     <div class="container mx-auto px-4 h-20 flex items-center justify-between">
         <a
-            href="/Night-Venue/"
+            href={base}
             class="text-2xl font-heading tracking-widest text-white uppercase group"
         >
             Venue <span
@@ -18,28 +20,28 @@
 
         <nav class="hidden md:flex gap-8 items-center">
             <a
-                href="/Night-Venue/events"
+                href={`${base}events`}
                 class="text-sm font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
                 >Events</a
             >
             <a
-                href="/Night-Venue/vip"
+                href={`${base}vip`}
                 class="text-sm font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
                 >VIP</a
             >
             <a
-                href="/Night-Venue/gallery"
+                href={`${base}gallery`}
                 class="text-sm font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
                 >Gallery</a
             >
             <a
-                href="/Night-Venue/contact"
+                href={`${base}contact`}
                 class="text-sm font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
                 >Contact</a
             >
 
             <a
-                href="/Night-Venue/events"
+                href={`${base}events`}
                 class="ml-4 px-6 py-2 bg-brand-accent text-white font-heading tracking-wide hover:shadow-[0_0_15px_rgba(155,92,255,0.5)] transition-all transform hover:-translate-y-0.5"
             >
                 Get Tickets

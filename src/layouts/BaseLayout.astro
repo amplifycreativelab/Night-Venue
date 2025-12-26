@@ -24,7 +24,7 @@ const jsonLd = {
     "@type": "NightClub",
     name: "Venue Nights",
     image: ogImageUrl,
-    url: "https://github.com/amplifycreativelab/Night-Venue/",
+    url: new URL(siteBase, Astro.site).href,
     telephone: "0400000000",
     address: {
         "@type": "PostalAddress",

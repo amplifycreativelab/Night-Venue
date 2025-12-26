@@ -15,6 +15,10 @@ import heroBg from "../assets/images/home-hero.webp";
 import neonDemon from "../assets/images/cocktail-neon-demon.webp";
 import midnightSour from "../assets/images/cocktail-midnight-sour.webp";
 import velvetRope from "../assets/images/cocktail-velvet-rope.webp";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout title="Venue Nights | Perth Nightclub & Bar">
@@ -55,10 +59,10 @@ import velvetRope from "../assets/images/cocktail-velvet-rope.webp";
             <div
                 class="flex flex-col md:flex-row gap-6 justify-center items-center"
             >
-                <Button href="/Night-Venue/events" variant="primary" size="lg"
+                <Button href={`${base}events`} variant="primary" size="lg"
                     >View Events</Button
                 >
-                <Button href="/Night-Venue/vip" variant="outline" size="lg"
+                <Button href={`${base}vip`} variant="outline" size="lg"
                     >Book VIP Booth</Button
                 >
             </div>
@@ -80,7 +84,7 @@ import velvetRope from "../assets/images/cocktail-velvet-rope.webp";
             </div>
 
             <div class="text-center">
-                <Button href="/Night-Venue/events" variant="secondary"
+                <Button href={`${base}events`} variant="secondary"
                     >View All Events</Button
                 >
             </div>
@@ -211,7 +215,7 @@ import velvetRope from "../assets/images/cocktail-velvet-rope.webp";
                     booth. Priority entry, dedicated service, and premium bottle
                     packages.
                 </p>
-                <Button href="/Night-Venue/vip" variant="primary" size="lg"
+                <Button href={`${base}vip`} variant="primary" size="lg"
                     >Explore VIP</Button
                 >
             </div>
