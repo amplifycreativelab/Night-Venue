@@ -48,10 +48,13 @@ const base = import.meta.env.BASE_URL.endsWith("/")
             </a>
         </nav>
 
-        <!-- Mobile Menu Button (Placeholder) -->
         <button
+            type="button"
             class="md:hidden text-white hover:text-brand-accent"
             aria-label="Menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-mobile-menu-button
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -68,4 +71,88 @@ const base = import.meta.env.BASE_URL.endsWith("/")
             </svg>
         </button>
     </div>
+
+    <div
+        class="md:hidden fixed inset-0 top-20 bg-black/50 backdrop-blur-[2px] hidden"
+        aria-hidden="true"
+        data-mobile-menu-backdrop
+    ></div>
+
+    <div
+        id="mobile-menu"
+        class="md:hidden fixed top-20 left-0 right-0 bg-brand-bg/95 backdrop-blur-md border-b border-white/10 hidden"
+        data-mobile-menu-panel
+    >
+        <nav
+            class="container mx-auto px-4 py-6 flex flex-col gap-4"
+            aria-label="Mobile"
+        >
+            <a
+                href={`${base}events`}
+                class="text-base font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
+                >Events</a
+            >
+            <a
+                href={`${base}vip`}
+                class="text-base font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
+                >VIP</a
+            >
+            <a
+                href={`${base}gallery`}
+                class="text-base font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
+                >Gallery</a
+            >
+            <a
+                href={`${base}contact`}
+                class="text-base font-medium hover:text-brand-accent transition-colors uppercase tracking-wide"
+                >Contact</a
+            >
+
+            <a
+                href={`${base}events`}
+                class="mt-2 px-6 py-3 bg-brand-accent text-white text-center font-heading tracking-wide hover:shadow-[0_0_15px_rgba(155,92,255,0.5)] transition-all"
+                >Get Tickets</a
+            >
+        </nav>
+    </div>
+
+    <script>
+        (() => {
+            const button = document.querySelector("[data-mobile-menu-button]");
+            const panel = document.querySelector("[data-mobile-menu-panel]");
+            const backdrop = document.querySelector("[data-mobile-menu-backdrop]");
+
+            if (!(button instanceof HTMLButtonElement)) return;
+            if (!(panel instanceof HTMLElement)) return;
+            if (!(backdrop instanceof HTMLElement)) return;
+
+            const isOpen = () => !panel.classList.contains("hidden");
+            const setOpen = (open) => {
+                panel.classList.toggle("hidden", !open);
+                backdrop.classList.toggle("hidden", !open);
+                button.setAttribute("aria-expanded", open ? "true" : "false");
+                document.body.classList.toggle("overflow-hidden", open);
+            };
+
+            button.addEventListener("click", () => setOpen(!isOpen()));
+            backdrop.addEventListener("click", () => setOpen(false));
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") setOpen(false);
+            });
+            panel.addEventListener("click", (event) => {
+                if (!(event.target instanceof Element)) return;
+                if (event.target.closest("a")) setOpen(false);
+            });
+
+            const media = window.matchMedia("(min-width: 768px)");
+            const handleMediaChange = (event) => {
+                if (event.matches) setOpen(false);
+            };
+            if ("addEventListener" in media) {
+                media.addEventListener("change", handleMediaChange);
+            } else if ("addListener" in media) {
+                media.addListener(handleMediaChange);
+            }
+        })();
+    </script>
 </header>
